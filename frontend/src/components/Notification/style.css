@@ -1,0 +1,54 @@
+.containerNotification{
+  display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: var(--white);
+    color: var();
+    font-size: 1.2em;
+    font-family: 'Roboto';
+    font-weight: bold;
+    padding: 8px;
+    width: 100%;
+    border-bottom: 2px solid var(--black);
+    height: 40px;
+  
+    /* border: 2px solid var(--green); */
+}
+.containerNotification::after{
+    content: '';
+    background-color: var(--green);
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    animation: contador 5s ease-in;
+    animation-delay: 1s;
+    outline: none;
+}
+@keyframes contador {
+    0%{
+        width: 100%;
+    }
+    100%{
+      width: 0%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+.showNotification{
+  display: block;
+    bottom: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
