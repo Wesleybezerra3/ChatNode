@@ -1,12 +1,19 @@
 const express = require('express');
 const db = require('./config/db');
 const cors = require('cors');
+const userRouter = require('./routes/auth')
 
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-app.use(cors());
+
+
+app.use(cors({origin:'http://localhost:5173'}));
+app.use(express.json())
+
+
+app.use('/auth',userRouter )
 
 let messages = [];
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 
-const Notification = ({ text, color,resetKey }) => {
+const Notification = ({ text,resetKey }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Notification = ({ text, color,resetKey }) => {
   }, [text, resetKey]);
   return (
     <>
-      <div style={{color:color}}
+      <div
         className={`containerNotification ${
           isVisible ? "showNotification" : ""
         }`}
