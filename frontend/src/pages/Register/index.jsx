@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
+import '../css/formStyle.css'
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,7 +49,7 @@ const Register = () => {
   const handleForm = (e) => {
     e.preventDefault();
 
-      if (Object.values(loginData).some((field)=>!field)) {
+      if (Object.values(registerData).some((field)=>!field)) {
         setNotification({
           text: "Por favor, preencha todos os campos antes de continuar. ✍️",
         });

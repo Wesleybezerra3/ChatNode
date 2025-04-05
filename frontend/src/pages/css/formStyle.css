@@ -1,0 +1,80 @@
+.eye {
+  /* position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 80%; */
+  z-index: 2;
+  margin-top: -50px;
+  margin-left: 450px;
+  cursor: pointer;
+  color: var(--green);
+  font-size: 1.8em;
+}
+.input-form {
+  width: 500px;
+  height: 50px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: "Fira code", monospace;
+  border: none;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--green);
+  margin-bottom: 10px;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--black) inset !important;
+  -webkit-text-fill-color: var(--green) !important;
+}
+.btn {
+  cursor: pointer;
+  width: 500px;
+  height: 50px;
+  outline: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Fire code", monospace;
+  border: none;
+  border: 1px solid var(--white);
+  box-shadow: 5px 5px 0px #f1f1f1;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--green);
+  transition-duration: 0.1s;
+  margin-top: 15px;
+}
+.btn:active {
+  margin-top: 20px;
+  box-shadow: -1px -1px 0px #f1f1f1;
+}
+
+.container-link{
+  margin-top: 5px;
+  width: 500px;
+  text-align: right;
+}
+.container-link >a{
+  color: var(--green);
+  font-family: 'Fire code', monospace;
+  font-size: 1.3em;
+  font-weight: lighter;
+}
+@media (max-width: 768px) {
+  .input-form, .btn{
+    width: 340px;
+
+  }
+  .btn{
+    font-size: 1.3em;
+  }
+  .eye{
+    font-size: 1.1em;
+    margin-top: -44px;
+    margin-left: 310px;
+  }
+  .container-link{
+    width: 310px;
+    font-size: 0.9em;
+  }
+}

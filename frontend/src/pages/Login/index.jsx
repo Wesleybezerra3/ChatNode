@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import  './style.css'
+import { Link, useNavigate } from "react-router-dom";
+import "./style.css";
+import "../css/formStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Notification from "../../components/notification";
 import api from "../../services/api";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [textNotification, setTextNotification] = useState('')
+  const [textNotification, setTextNotification] = useState("");
   const [resetKey, setResetKey] = useState(0);
 
   const [loginData, setLoginData] = useState({
@@ -27,10 +28,10 @@ const Login = () => {
       const response = await api.post("/auth/login", data, {
         headers: { "Content-Type": "application/json" },
       });
-     const token = response.data.token;
-     localStorage.setItem('token',token)
+      const token = response.data.token;
+      localStorage.setItem("token", token);
       const message = response.data.message;
-       setTextNotification(message)
+      setTextNotification(message);
     } catch (err) {
       console.error(err);
       return;
@@ -39,27 +40,26 @@ const Login = () => {
 
   const handleForm = (e) => {
     e.preventDefault();
-      if (Object.values(loginData).some((field)=>!field)) {
-        setTextNotification( 
-          "Por favor, preencha todos os campos antes de continuar. ✍️"
-        );
-        setResetKey((prev) => prev + 1);
-        return;
-      }
-      loginUser(loginData).then(() => {
-        setLoginData({
-          username: "",
-          password: "",
-        });
-        navigate('/')
+    if (Object.values(loginData).some((field) => !field)) {
+      setTextNotification(
+        "Por favor, preencha todos os campos antes de continuar. ✍️"
+      );
+      setResetKey((prev) => prev + 1);
+      return;
+    }
+    loginUser(loginData).then(() => {
+      setLoginData({
+        username: "",
+        password: "",
       });
-    
-  }
+      navigate("/");
+    });
+  };
 
   return (
     <>
       <div className="container-center">
-        <Notification text={textNotification} resetKey={resetKey}/>
+        <Notification text={textNotification} resetKey={resetKey} />
         <form className="login" onSubmit={handleForm}>
           <h1>ChatNode</h1>
           <input
@@ -95,6 +95,9 @@ const Login = () => {
           <button type="submit" className="btn">
             Entrar
           </button>
+          <div className="container-link">
+            <Link to={"/cadastro"}>Criar conta</Link>
+          </div>
         </form>
       </div>
     </>

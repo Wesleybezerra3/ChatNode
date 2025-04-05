@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./style.css";
+import useServerCheck from "../../hooks/useServerCheck";
 
 import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,10 +8,15 @@ import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 import socket from "../../services/socket";
 import api from "../../services/api";
+
+
 const Home = () => {
+  useServerCheck();
+
   const { user, logUser } = useContext(UserContext);
   const [messageObj, setMessageObj] = useState({
     message: "",
+    author: null,
   });
   const [messages, setMessages] = useState([]);
 
@@ -21,10 +27,15 @@ const Home = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    if (user) {
+      setMessageObj((prev) => ({
+        ...prev,
+        author: user.username,
+      }));
+    }
     if (messageObj.message) {
       socket.emit("sendMessage", messageObj);
       sendMessage({ ...messageObj, message: "" });
-     
     }
     setMessageObj({
       message: "",
@@ -75,7 +86,7 @@ const Home = () => {
         <div class="messages">
           {messages.map((msg, i) => (
             <p key={i}>
-              <strong>{user.username}: </strong>
+              <strong>{msg.author}: </strong>
               {msg.message}
             </p>
           ))}

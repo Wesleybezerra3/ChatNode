@@ -2,7 +2,10 @@ const express = require('express');
 const db = require('./config/db');
 const cors = require('cors');
 const userRouter = require('./routes/auth')
+const configRouter = require('./routes/config')
 
+
+const port = process.env.PORT;
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -14,6 +17,8 @@ app.use(express.json())
 
 
 app.use('/auth',userRouter )
+app.use('/config',configRouter )
+
 
 let messages = [];
 
@@ -29,6 +34,4 @@ io.on('connection', socket =>{
     });
 });
 
-server.listen(3000,()=>{
-    console.log('Servidor Rodando na porta 3000')
-});
+server.listen(port);
