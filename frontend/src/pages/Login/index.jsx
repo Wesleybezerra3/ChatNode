@@ -4,7 +4,7 @@ import "./style.css";
 import "../css/formStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import Notification from "../../components/notification";
+import Notification from "../../components/Notification";
 import api from "../../services/api";
 
 const Login = () => {
