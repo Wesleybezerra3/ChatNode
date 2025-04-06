@@ -12,7 +12,7 @@ const io = require('socket.io')(server);
 
 
 
-app.use(cors({origin:'https://chat-node-9kar.vercel.app'}));
+app.use(cors({origin:'http://localhost:5173'}));
 app.use(express.json())
 
 

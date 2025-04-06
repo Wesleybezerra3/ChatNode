@@ -1,22 +1,22 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import "./style.css";
 import useServerCheck from "../../hooks/useServerCheck";
 
 import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 import socket from "../../services/socket";
 import api from "../../services/api";
-
+import { Link } from "react-router-dom";
 
 const Home = () => {
   useServerCheck();
 
+  const bottomRef = useRef(null);
   const { user, logUser } = useContext(UserContext);
   const [messageObj, setMessageObj] = useState({
     message: "",
-    author: null,
   });
   const [messages, setMessages] = useState([]);
 
@@ -25,22 +25,30 @@ const Home = () => {
     setMessageObj({ ...messageObj, [name]: value });
   };
 
+  const exitChat = ()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      localStorage.removeItem('token')
+    }
+  }
+
   const sendMessage = (e) => {
     e.preventDefault();
-    if (user) {
-      setMessageObj((prev) => ({
-        ...prev,
-        author: user.username,
-      }));
-    }
-    if (messageObj.message) {
-      socket.emit("sendMessage", messageObj);
-      sendMessage({ ...messageObj, message: "" });
-    }
+    if (!messageObj.message || !user) return;
+    const fullMessage = {
+      ...messageObj,
+      author: user.username,
+    };
+    socket.emit("sendMessage", fullMessage);
+
     setMessageObj({
       message: "",
     });
   };
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -82,28 +90,38 @@ const Home = () => {
 
   return (
     <div className="container">
+      <div className="container-exit">
+        <button onClick={exitChat} className="exit-chat">
+          <Link to={"/login"}>
+            {" "}
+            <FontAwesomeIcon icon={faCaretLeft} /> Sair do chat
+          </Link>
+        </button>
+      </div>
       <form id="chat" onSubmit={sendMessage}>
-        <div class="messages">
+        <div class="messages-container">
           {messages.map((msg, i) => (
             <p key={i}>
               <strong>{msg.author}: </strong>
               {msg.message}
             </p>
           ))}
-          <div className="container-input">
-            <input
-              type="text"
-              name="message"
-              placeholder="Digite sua mensagem"
-              value={messageObj.message}
-              onChange={handleObj}
-              className="input-chat"
-            />
+          <div ref={bottomRef} />
+        </div>
 
-            <button className="btn-chat" type="submit">
-              <FontAwesomeIcon icon={faCaretRight} />
-            </button>
-          </div>
+        <div className="container-input">
+          <input
+            type="text"
+            name="message"
+            placeholder="Digite sua mensagem"
+            value={messageObj.message}
+            onChange={handleObj}
+            className="input-chat"
+          />
+
+          <button className="btn-chat" type="submit">
+            <FontAwesomeIcon icon={faCaretRight} />
+          </button>
         </div>
       </form>
     </div>

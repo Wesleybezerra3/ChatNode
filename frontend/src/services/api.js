@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL:'https://chatnode-dxiq.onrender.com'
+    baseURL:'http://localhost:8180'
 });
 export default api;
