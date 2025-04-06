@@ -15,6 +15,7 @@ const Home = () => {
 
   const bottomRef = useRef(null);
   const { user, logUser } = useContext(UserContext);
+  const [usersOn, setUsersOn] = useState([]);
   const [messageObj, setMessageObj] = useState({
     message: "",
   });
@@ -25,12 +26,12 @@ const Home = () => {
     setMessageObj({ ...messageObj, [name]: value });
   };
 
-  const exitChat = ()=>{
-    const token = localStorage.getItem('token')
-    if(token){
-      localStorage.removeItem('token')
+  const exitChat = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      localStorage.removeItem("token");
     }
-  }
+  };
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -62,6 +63,7 @@ const Home = () => {
           });
           const user = response.data;
           logUser(user);
+          socket.emit("usersOn", user.username);
         }
       } catch (err) {
         console.log(
@@ -70,6 +72,8 @@ const Home = () => {
         );
       }
     };
+    getUser();
+
     //Ouvindo mensagens antigas quando o usuário entra
     socket.on("prevMessages", (messagesData) => {
       setMessages(messagesData);
@@ -79,52 +83,67 @@ const Home = () => {
     socket.on("receivedMessage", (newMessage) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
-    getUser();
+    socket.on("updateUsersOn", (newUsersOn) => {
+      setUsersOn(newUsersOn);
+      console.log(newUsersOn);
+    });
 
     //Remove os eventos quando o componente for desmontado
     return () => {
       socket.off("prevMessages");
       socket.off("receivedMessage");
+      socket.off("updateUsersOn");
     };
   }, []);
 
   return (
-    <div className="container">
-      <div className="container-exit">
+    <>
+      <div className="container-header-chat">
         <button onClick={exitChat} className="exit-chat">
           <Link to={"/login"}>
             {" "}
             <FontAwesomeIcon icon={faCaretLeft} /> Sair do chat
           </Link>
         </button>
+        <div className="container-usersOn">
+          <h3>Usuários Online:</h3>
+          <div className="usersOnP">
+            {usersOn.map((userOn, i) => (
+              <p key={i}>{userOn}</p>
+            ))}
+          </div>
+        </div>
       </div>
-      <form id="chat" onSubmit={sendMessage}>
-        <div class="messages-container">
-          {messages.map((msg, i) => (
-            <p key={i}>
-              <strong>{msg.author}: </strong>
-              {msg.message}
-            </p>
-          ))}
-          <div ref={bottomRef} />
-        </div>
 
-        <div className="container-input">
-          <input
-            type="text"
-            name="message"
-            placeholder="Digite sua mensagem"
-            value={messageObj.message}
-            onChange={handleObj}
-            className="input-chat"
-          />
+      <div className="container">
+        <form id="chat" onSubmit={sendMessage}>
+          <div class="messages-container">
+            {messages.map((msg, i) => (
+              <p key={i}>
+                <strong>{msg.author}: </strong>
+                {msg.message}
+              </p>
+            ))}
+            <div ref={bottomRef} />
+          </div>
 
-          <button className="btn-chat" type="submit">
-            <FontAwesomeIcon icon={faCaretRight} />
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="container-input">
+            <input
+              type="text"
+              name="message"
+              placeholder="Digite sua mensagem"
+              value={messageObj.message}
+              onChange={handleObj}
+              className="input-chat"
+            />
+
+            <button className="btn-chat" type="submit">
+              <FontAwesomeIcon icon={faCaretRight} />
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

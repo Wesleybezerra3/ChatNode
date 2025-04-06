@@ -71,7 +71,9 @@ const Register = () => {
           password: "",
           confirmPassword: "",
         });
-        navigate('/login')
+        setInterval(() => {
+          navigate('/login')          
+        }, 4000);
       });
     
   };
@@ -101,10 +103,7 @@ const Register = () => {
             />
             <div
               className="eye"
-              onMouseDown={() => {
-                setShowPassword(!showPassword);
-              }}
-              onMouseUp={() => {
+              onClick={() => {
                 setShowPassword(!showPassword);
               }}
             >

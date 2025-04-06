@@ -9,8 +9,8 @@ body {
   box-sizing: border-box;
 }
 .container {
+  padding: 10px;
   width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@ body {
 #chat {
   position: relative;
   width: 90%;
-  height: 600px;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,13 +92,16 @@ body {
   scrollbar-width: none;
 }
 
-.container-exit{
+.container-header-chat{
+  margin:auto;
   width: 90%;
-  text-align: right;
-  margin-bottom: 30px;
+  padding: 30px 10px 0px 10px;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
-  justify-content: left;
+  align-items: start;
+  justify-content: right;
+  flex-direction: column;
+  gap: 1.2em;
 
 }
 .exit-chat{
@@ -106,18 +109,51 @@ body {
   border: none;
 }
 .exit-chat >a{
+
   text-decoration: none;
   color: var(--green);
   font-size: 1em;
   font-family: 'Fira code', monospace;
   padding:  5px 10px;
   border: 1px solid var(--white);
-  box-shadow: 5px 5px 0px #f1f1f1;
+  /* box-shadow: 5px 5px 0px #f1f1f1; */
+}
+
+.container-usersOn{
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+.container-usersOn > h3 {
+  position: absolute;
+  color: var(--green);
+  font-family: 'Fira code', monospace;
+  font-size: 1em;
+  font-weight:400;
+  top: -10px;
+  left: 20px;
+  z-index: 2;
+  background-color: var(--black);
+ padding: 0px 10px;
+}
+.usersOnP{
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  border: 1px solid var(--white);
+ padding: 20px 10px 10px 10px;
+ font-family: 'Fire code',monospace ;
+ color: var(--green);
+
 }
 
 
 @media (max-width: 768px) {
   #chat {
+    width: 100%;
+    height: calc(100vh - 200px);
+  }
+  .container-header-chat{
     width: 100%;
   }
   .messages {

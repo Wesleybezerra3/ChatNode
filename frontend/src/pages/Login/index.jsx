@@ -52,7 +52,9 @@ const Login = () => {
         username: "",
         password: "",
       });
-      navigate("/");
+      setInterval(() => {
+        navigate('/')          
+      }, 3000);
     });
   };
 
@@ -81,12 +83,10 @@ const Login = () => {
             />
             <div
               className="eye"
-              onMouseDown={() => {
+              onClick={() => {
                 setShowPassword(!showPassword);
               }}
-              onMouseUp={() => {
-                setShowPassword(!showPassword);
-              }}
+              
             >
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
             </div>

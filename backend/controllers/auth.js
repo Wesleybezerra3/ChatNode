@@ -56,7 +56,7 @@ exports.login = async(req,res)=>{
   }
   const token = generateToken(user)
   
-  return res.status(200).json({message:'Login bem-sucedido! ✅', token})
+  return res.status(200).json({message:'Login bem-sucedido! ✅ Encaminhado para o chat...', token})
 
   }catch(err){
     console.error(err)
