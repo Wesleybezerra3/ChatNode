@@ -1,32 +1,37 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); 
-const User = require('./User'); 
-const Message = sequelize.define('Message', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: User,
-            key: 'id'
-        },
-        onDelete: 'CASCADE'
-    },
-    content: {
+// models/Message.js
+module.exports = (sequelize, DataTypes) => {
+    const Message = sequelize.define("Message", {
+      content: {
         type: DataTypes.TEXT,
         allowNull: false
-    },
-    sent_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
-}, {
-    tableName: 'messages',
-    timestamps: false
-});
-
-module.exports = Message;
+      },
+      author_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      chat_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    }, {
+      tableName: "messages",
+      timestamps: true,
+      createdAt: "sent_at",
+      updatedAt: false
+    });
+  
+    Message.associate = models => {
+      Message.belongsTo(models.User, {
+        foreignKey: "author_id",
+        as: "author"
+      });
+  
+      Message.belongsTo(models.Chat, {
+        foreignKey: "chat_id",
+        as: "chat"
+      });
+    };
+  
+    return Message;
+  };
+  

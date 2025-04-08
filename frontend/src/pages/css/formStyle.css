@@ -78,3 +78,7 @@ input:-webkit-autofill {
     font-size: 0.9em;
   }
 }
+.container-logo-form > img{
+  width: 130px;
+
+}

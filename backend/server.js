@@ -1,19 +1,27 @@
 const express = require("express");
-const db = require("./config/db");
+const db = require("./model/index");
 const cors = require("cors");
 const userRouter = require("./routes/auth");
 const configRouter = require("./routes/config");
+const chatRouter = require("./routes/chat");
+const usersRouter = require("./routes/users");
+
+
 
 const port = process.env.PORT;
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-app.use(cors({ origin: "https://chat-node-uunh.vercel.app" }));
+app.use(cors());
+// { origin: "https://chat-node-uunh.vercel.app" }
 app.use(express.json());
 
+app.use("/chats", chatRouter);
 app.use("/auth", userRouter);
 app.use("/config", configRouter);
+app.use("/users", usersRouter);
+
 
 let messages = [];
 const usersOn = new Set();

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import logo from "../../assets/logo.svg";
 
 import Notification from "../../components/Notification";
 
@@ -82,7 +83,9 @@ const Register = () => {
       <div className="container-center">
         <Notification text={notification.text} resetKey={resetKey} />
         <form className="register" onSubmit={handleForm}>
-          <h1>ChatNode</h1>
+          <div className="container-logo">
+            <img src={logo} alt="" />
+          </div>
           <input
             type="text"
             className="input-form"

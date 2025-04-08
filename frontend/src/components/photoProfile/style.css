@@ -1,0 +1,12 @@
+.container-img-profile {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: var(--black-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-family: "Fira code", monospace;
+    cursor: pointer;
+  }

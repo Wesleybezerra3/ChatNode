@@ -5,6 +5,7 @@ import "../css/formStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Notification from "../../components/Notification";
+import logo from "../../assets/logo.svg";
 import api from "../../services/api";
 
 const Login = () => {
@@ -53,7 +54,7 @@ const Login = () => {
         password: "",
       });
       setInterval(() => {
-        navigate('/')          
+        navigate("/");
       }, 3000);
     });
   };
@@ -63,7 +64,9 @@ const Login = () => {
       <div className="container-center">
         <Notification text={textNotification} resetKey={resetKey} />
         <form className="login" onSubmit={handleForm}>
-          <h1>ChatNode</h1>
+          <div className="container-logo">
+            <img src={logo} alt="" />
+          </div>
           <input
             type="text"
             className="input-form"
@@ -86,7 +89,6 @@ const Login = () => {
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
-              
             >
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
             </div>
