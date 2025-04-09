@@ -54,7 +54,7 @@ const Login = () => {
         password: "",
       });
       setInterval(() => {
-        navigate("/");
+        navigate("/chats");
       }, 3000);
     });
   };
@@ -64,7 +64,7 @@ const Login = () => {
       <div className="container-center">
         <Notification text={textNotification} resetKey={resetKey} />
         <form className="login" onSubmit={handleForm}>
-          <div className="container-logo">
+          <div className="container-logo-form">
             <img src={logo} alt="" />
           </div>
           <input

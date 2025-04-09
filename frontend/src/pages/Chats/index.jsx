@@ -19,7 +19,7 @@ const Chats = () => {
   }, []);
 
   return (
-    <section className="container-participating">
+    <section className="container-chats">
       <h1>Chats</h1>
       <div className="container-cards">
         {chatsData && chatsData.map((chat, i) => (

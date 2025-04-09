@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import api from "../../services/api";
+import useServerCheck from "../../hooks/useServerCheck";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,6 +15,7 @@ import PhotoProfile from "../../components/photoProfile";
 import { UserContext } from "../../context/UserContext";
 
 const HomeNew = () => {
+  useServerCheck();
   const { user, logUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -31,18 +33,18 @@ const HomeNew = () => {
           // socket.emit("usersOn", user.username);
         }
       } catch (err) {
-        console.log(
-          "Erro ao realizar autenticação ou usuário não logado.",
-          err
-        );
+        if (localStorage.getItem("token")) {
+          localStorage.removeItem("token");
+        }
+        console.log('Token inválido')
       }
     };
     getUser();
-  },[]);
+  }, []);
   return (
     <>
       <header className="header-home">
-       <PhotoProfile/>
+        <PhotoProfile />
         <div className="container-logo">
           <img src={logo} alt="Logo" />
         </div>

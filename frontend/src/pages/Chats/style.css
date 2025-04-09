@@ -1,17 +1,17 @@
-.container-participating{
+.container-chats{
     position: relative;
     width: 100%;
     height: 100%;
     border-top:0.5px solid var(--white) ;
     padding-top: 30px;
 }
-.container-participating>h1{
+.container-chats>h1{
     color: var(--green);
     background-color: var(--black);
     padding: 10px;
     font-family: 'Fira code', monospace;
-    font-size: 1em;
-    font-weight: 400;
+    font-size: 1.2em;
+    font-weight: 500;
     position: absolute;
     top: -20px;
     left: 20px;

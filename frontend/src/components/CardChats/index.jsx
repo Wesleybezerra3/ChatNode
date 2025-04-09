@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import api from "../../services/api";
-const CardChats = ({ qtdMembros, chatName, creator, acess }) => {
+import { Link } from "react-router-dom";
+const CardChats = ({ qtdMembros, chatName, creator, acess,}) => {
 
   const [nameCreator,setNameCreator] = useState('');
 
@@ -41,7 +42,9 @@ const CardChats = ({ qtdMembros, chatName, creator, acess }) => {
         </div>
 
         <div className="container-btn">
-          <button>Entrar no chat</button>
+          <Link to={`/chat/${chatName}`}>
+           Entrar no chat
+          </Link>
         </div>
       </article>
     </>

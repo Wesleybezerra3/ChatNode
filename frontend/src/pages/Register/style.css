@@ -7,9 +7,6 @@
  gap: 1em;
 }
 
-.register > h1{
-    text-align: center;
-    font-family: 'Roboto';
-    color: var(--green);
-    font-weight: bold;
+.container-logo-form img{
+    width: 120px;
 }

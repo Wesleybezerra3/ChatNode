@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
-import '../css/formStyle.css'
-import { useNavigate } from "react-router-dom";
+import "../css/formStyle.css";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ import Notification from "../../components/Notification";
 import api from "../../services/api";
 
 const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const passwordRef = useRef(null);
   const [notification, setNotification] = useState({
@@ -50,40 +50,39 @@ const Register = () => {
   const handleForm = (e) => {
     e.preventDefault();
 
-      if (Object.values(registerData).some((field)=>!field)) {
-        setNotification({
-          text: "Por favor, preencha todos os campos antes de continuar. ✍️",
-        });
-        setResetKey((prev) => prev + 1);
-        return;
-      }
-
-      if (registerData.password !== registerData.confirmPassword) {
-        setNotification({
-          text: "As senhas digitadas não coincidem. Verifique e tente novamente! ⚠️",
-        });
-        setResetKey((prev) => prev + 1);
-        return;
-      }
-      
-      postUser(registerData).then(() => {
-        setRegisterData({
-          username: "",
-          password: "",
-          confirmPassword: "",
-        });
-        setInterval(() => {
-          navigate('/login')          
-        }, 4000);
+    if (Object.values(registerData).some((field) => !field)) {
+      setNotification({
+        text: "Por favor, preencha todos os campos antes de continuar. ✍️",
       });
-    
+      setResetKey((prev) => prev + 1);
+      return;
+    }
+
+    if (registerData.password !== registerData.confirmPassword) {
+      setNotification({
+        text: "As senhas digitadas não coincidem. Verifique e tente novamente! ⚠️",
+      });
+      setResetKey((prev) => prev + 1);
+      return;
+    }
+
+    postUser(registerData).then(() => {
+      setRegisterData({
+        username: "",
+        password: "",
+        confirmPassword: "",
+      });
+      setInterval(() => {
+        navigate("/login");
+      }, 4000);
+    });
   };
   return (
     <>
       <div className="container-center">
         <Notification text={notification.text} resetKey={resetKey} />
         <form className="register" onSubmit={handleForm}>
-          <div className="container-logo">
+          <div className="container-logo-form">
             <img src={logo} alt="" />
           </div>
           <input
@@ -125,6 +124,9 @@ const Register = () => {
           <button type="submit" className="btn">
             Cadastrar
           </button>
+          <div className="container-link">
+            <Link to={"/login"}>Já tenho conta</Link>
+          </div>
         </form>
       </div>
     </>
