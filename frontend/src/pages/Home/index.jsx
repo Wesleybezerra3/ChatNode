@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import useAutoLogout from "../../hooks/useAutoLogout";
 import logo from "../../assets/logo.svg";
-import hacker from "../../assets/hacker-bro.png";
+import hacker from "../../assets/Hacker-bro.png";
 import PhotoProfile from "../../components/photoProfile";
 import SideMenu from "../../components/SideMenu";
 
