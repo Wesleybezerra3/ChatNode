@@ -10,8 +10,12 @@
  --black-light:#1f1f1f;
  --green:#19d800;
 }
+*::-webkit-scrollbar {
+    display: none;
+  }
 body,html{
     background-color: var(--black);
+    scroll-behavior: smooth
 }
 
 .container-center{

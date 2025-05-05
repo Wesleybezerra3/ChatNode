@@ -3,5 +3,8 @@ falta encontrar uma forma que a notificação possa ser chamada mais de uma vez;
 
 03/04/2025 - Está acontecendo um erro de duplição de dados por parte do front. Os dados estão sendo enviado pro back varias vezes, mas mesmo assim o usuário está sendo cadastrado, mas retorna um erro...
 
-
+cria uma rota só para o socket, pq ele está diretamente no servidor.
  Criar as rotas dos chats;
+
+ Termina a exibição da data nas mensagens
+ 

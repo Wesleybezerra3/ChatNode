@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import "../css/formStyle.css";
@@ -7,6 +7,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Notification from "../../components/Notification";
 import logo from "../../assets/logo.svg";
 import api from "../../services/api";
+import { UserContext} from "../../context/Contexts";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,6 +21,12 @@ const Login = () => {
     password: "",
   });
 
+  const saveToken = (token) => {
+    const expiration = Date.now() + 60 * 60 * 1000; // 1 hora (em ms)
+    localStorage.setItem("token", token);
+    localStorage.setItem("token_expiration", expiration.toString());
+  };
+
   const handleObj = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
@@ -30,12 +38,16 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
       });
       const token = response.data.token;
-      localStorage.setItem("token", token);
+      saveToken(token);
       const message = response.data.message;
       setTextNotification(message);
+      setResetKey((prev) => prev + 1);
     } catch (err) {
       console.error(err);
-      return;
+      const message = err.response.data.message;
+      setTextNotification(message);
+      setResetKey((prev) => prev + 1);
+
     }
   };
 
@@ -49,11 +61,7 @@ const Login = () => {
       return;
     }
     loginUser(loginData).then(() => {
-      setLoginData({
-        username: "",
-        password: "",
-      });
-      setInterval(() => {
+      setTimeout(() => {
         navigate("/chats");
       }, 3000);
     });

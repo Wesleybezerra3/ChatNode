@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-const CardChats = ({ qtdMembros, chatName, creator, acess,}) => {
+const CardChats = ({chatName, creator, acess,}) => {
 
   const [nameCreator,setNameCreator] = useState('');
 
@@ -37,7 +37,7 @@ const CardChats = ({ qtdMembros, chatName, creator, acess,}) => {
             By:
               <span> {nameCreator} </span>
             </p>
-            <p>{acess ? "Chat priado" : "Chat público"}</p>
+            <p>{acess ? "Chat privado" : "Chat público"}</p>
           </div>
         </div>
 

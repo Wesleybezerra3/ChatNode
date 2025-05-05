@@ -14,7 +14,7 @@ const useServerCheck = () => {
             alert('Servidor fora do ar! Redirecionando para o login...');
             navigate('/login')
         });
-    }, 5000);
+    }, 2000);
     return () => clearInterval(interval);
   },[navigate]);
 };

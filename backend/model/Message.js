@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false
       },
-      author_id: {
+      user_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
@@ -16,19 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     }, {
       tableName: "messages",
       timestamps: true,
-      createdAt: "sent_at",
+      createdAt: "created_at",
       updatedAt: false
     });
   
     Message.associate = models => {
       Message.belongsTo(models.User, {
-        foreignKey: "author_id",
-        as: "author"
+        as: "author",
+        foreignKey: "user_id"
       });
   
       Message.belongsTo(models.Chat, {
-        foreignKey: "chat_id",
-        as: "chat"
+        as: "chat",
+        foreignKey: "chat_id"
       });
     };
   

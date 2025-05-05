@@ -1,0 +1,53 @@
+.side-menu{
+    background-color: var(--black);
+    border-right: 1px solid var(--white);
+    padding: 10px;
+    width: 280px;
+    height: 100vh;
+    position: absolute;
+    z-index: 4;
+    top: 0;  
+    font-family: 'Fira Code', monospace;
+}
+.background-side-menu{
+    background-color: var(--black);
+    opacity: 0.5;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    content: '';
+    padding: 1px;
+    z-index: 3;
+}
+.header-side-menu{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+  
+    
+}
+.container-info-user-side-menu{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+.name-id-user-side-menu{
+    display: flex;
+    gap: 10px;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--white);
+    
+}
+.description-user-side-menu{
+    font-size: 0.8em;
+    font-weight: lighter;
+    color: var(--white);
+    word-break: break-word;   
+    overflow-wrap: break-word;  
+    white-space: normal;        
+  
+}

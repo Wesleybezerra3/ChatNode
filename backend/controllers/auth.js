@@ -53,11 +53,11 @@ exports.login = async(req,res)=>{
   const isPassword = await bcrypt.compare(password, user.password);
 
   if(!isPassword){
-    return res.status(401).json({message:'Senha inválida!'});
+    return res.status(401).json({message:'Usuário ou senha inválidos. Tente novamente. 🔑'});
   }
   const token = generateToken(user)
   
-  return res.status(200).json({message:'Login bem-sucedido! ✅ Encaminhado para o chat...', token})
+  return res.status(200).json({message:'Login bem-sucedido! ✅', token})
 
   }catch(err){
     console.error(err)

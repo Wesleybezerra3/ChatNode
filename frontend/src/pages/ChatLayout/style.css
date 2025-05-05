@@ -1,0 +1,203 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#chat {
+  position: relative;
+  width: 90%;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+}
+
+.input-chat {
+  width: 100%;
+  /* border: 2px solid var(--black); */
+  height: 50px;
+  padding: 0 20px;
+  font-family: "Fira code",monospace;
+  font-size: 1.2em;
+  border: none;
+  outline: none;
+  color: var(--white);
+  background-color: var(--black);
+  border-top: 1px solid var(--white);
+  border-radius: 0px 0px 5px 5px;
+  position: fixed;
+}
+.input-chat:active {
+  background-color: transparent;
+}
+.container-input {
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.btn-chat {
+  position: absolute;
+  bottom: -50px;
+  left: 95%;
+  z-index: 2;
+  /* margin-top: -50px;
+    margin-left: 90% ; */
+  border: none;
+  font-size: 2.5em;
+  background-color: transparent;
+  color: var(--green);
+  cursor: pointer;
+}
+
+.messages-container {
+  word-wrap: break-word;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 60px 10px;
+
+  background-color: transparent;
+  font-family: 'Fira code', monospace;
+  overflow-y: auto;
+}
+
+
+
+.message{
+display: flex;
+flex-direction: column;
+margin-bottom: 10px;
+}
+.header-message{
+  display:flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--green);
+  margin-bottom: 0.5px;
+} 
+.header-message:nth-child(1){
+ font-weight: 400;
+}
+.header-message span{
+  font-size: 0.7em;
+  opacity: 0.8;
+}
+.container-message{
+  color: var(--white);
+  opacity: 0.8;
+}
+
+.messages-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.messages-container {
+  scrollbar-width: none;
+}
+
+.container-header-chat{
+  margin:auto;
+  width: 90%;
+  padding: 30px 10px 0px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+  /* flex-direction: column; */
+}
+.container-name-chat{
+  color: var(--green);
+  font-family: 'Fira code', monospace;
+  font-size: 1em;
+  font-weight: 600;
+  /* font-weight:400; */
+}
+.exit-chat{
+  background-color: transparent;
+  border: none;
+}
+.exit-chat >a{
+
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1em;
+  font-family: 'Fira code', monospace;
+  padding:  5px 10px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  /* box-shadow: 5px 5px 0px #f1f1f1; */
+}
+
+.container-usersOn{
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+.container-usersOn > h3 {
+  position: absolute;
+  color: var(--green);
+  font-family: 'Fira code', monospace;
+  font-size: 1em;
+  font-weight:400;
+  top: -10px;
+  left: 20px;
+  z-index: 2;
+  background-color: var(--black);
+ padding: 0px 5px;
+}
+.usersOnP{
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+ padding: 10px;
+ font-family: 'Fire code',monospace ;
+ color: var(--white);
+ overflow-x: auto;
+
+}
+
+
+@media (max-width: 768px) {
+  #chat {
+    width: 100%;
+    height: calc(100vh - 200px);
+  }
+  .container-header-chat{
+    width: 100%;
+  }
+  .messages {
+    height: 100vh;
+    margin: 0;
+    border: 2px solid var(--white);
+  }
+  .input-chat {
+    font-size: 1em;
+  }
+  .btn-chat {
+    left: 90%;
+    font-size: 2.3em;
+  }
+}

@@ -1,0 +1,51 @@
+.container-mychats-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 0.5px solid var(--white);
+    height: 60px;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Fira code', monospace;
+    box-shadow: 5px 5px 0 var(--white); 
+}
+.mychats-card-info{
+    display: flex;
+    flex-direction: column;
+}
+.mychats-card-info p:nth-child(1){
+    color: var(--green);
+    font-weight: bold;
+    font-size: 0.8em;
+}
+.mychats-card-info p:nth-child(2){
+    color: var(--white);
+    font-size: 0.7em;
+}
+.container-mychats-card-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.btn-manage-chat{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.btn-manage-chat img{
+    width: 8px;
+}
+.btn-joim-chat a{
+    text-decoration: none;
+    border: 0.5px solid var(--white);
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--green);
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: 'Fira code', monospace;
+}
