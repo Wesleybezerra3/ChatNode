@@ -7,7 +7,7 @@ import PhotoProfile from "../../components/photoProfile";
 
 const SideMenu = ({ visible }) => {
   const { user } = useContext(UserContext);
-  const [isViisible, setIsVisible] = useState(visible);
+  const [isViisible, setIsVisible] = useState(true);
   useEffect(() => {
     setIsVisible((prev) => !prev);
   }, [visible]);
