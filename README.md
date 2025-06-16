@@ -1,80 +1,61 @@
-ChatPrompt 💬🚀
-Um chat de comunicação em tempo real desenvolvido com tecnologias modernas de front-end e back-end!
+# 💬 ChatPrompt
 
-📌 Sobre o Projeto
-O ChatPrompt é uma aplicação de chat com foco em comunicação entre usuários em tempo real, utilizando WebSocket via Socket.io.
+Um sistema de chat em tempo real, construído com tecnologias modernas de desenvolvimento web fullstack.
 
-O projeto surgiu como um desafio pessoal para aprofundar conhecimentos em desenvolvimento Full Stack, integrando tecnologias como React, Node.js e MySQL.
+---
 
-⚙️ Tecnologias Utilizadas
-Front-end:
-React.js
+## 📌 Sobre o Projeto
 
-Axios (requisições HTTP)
+O **ChatPrompt** é uma aplicação de chat que permite a comunicação entre usuários de forma **instantânea**, utilizando **WebSockets (Socket.io)**.
 
-Socket.io Client (para comunicação em tempo real)
+O objetivo do projeto é servir como um ambiente de testes e aprendizado prático em autenticação segura, comunicação em tempo real, controle de acesso e organização de múltiplos usuários em salas de conversa.
 
-Back-end:
-Node.js
+---
 
-Express.js
+## ⚙️ Tecnologias Utilizadas
 
-Sequelize (ORM)
+### 🖥️ Front-end
+- [React.js](https://reactjs.org/)
+- [Axios](https://axios-http.com/)
+- [Socket.io-client](https://socket.io/)
 
-MySQL2
+### 🛠️ Back-end
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Sequelize](https://sequelize.org/)
+- [MySQL2](https://www.npmjs.com/package/mysql2)
+- [JWT](https://jwt.io/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [Socket.io](https://socket.io/)
 
-JWT (autenticação com token)
+### 💽 Banco de Dados
+- [MySQL](https://www.mysql.com/)
 
-dotenv (variáveis de ambiente)
+---
 
-Socket.io (WebSocket server)
+## ✅ Funcionalidades Implementadas
 
-Banco de Dados:
-MySQL
+- 🔐 **Cadastro e Login de Usuários**
+  - Senhas criptografadas com `bcrypt`
+  - Autenticação por token `JWT`
 
-✅ Funcionalidades já implementadas:
-Cadastro de Usuário
+- 💬 **Criação de Chats**
+  - Chats públicos
+  - Chats privados (estrutura pronta)
 
-Senhas armazenadas de forma segura com criptografia (bcrypt)
+- 🔄 **Mensagens em Tempo Real**
+  - Envio e recebimento instantâneo via `socket.io`
+  - Histórico de mensagens por chat
 
-Autenticação via JWT
+---
 
-Login
+## 🛠️ Próximos Passos
 
-Login seguro com validação de credenciais
+- 👥 Exibição de usuários online em tempo real  
+- 🔒 Controle de acesso a chats privados  
+- 😀 Melhorar a experiência com envio de **emojis e figurinhas**  
+- 🧑‍🤝‍🧑 Implementar **chat privado entre dois usuários**  
+- 👫 Sistema de **amigos com convites e aceites**  
 
-Criação de Chats
+---
 
-Chats públicos e privados
-
-Controle de quem pode entrar nos chats privados (em desenvolvimento)
-
-Sistema de Mensagens em Tempo Real
-
-Envio e recebimento instantâneo de mensagens usando Socket.io
-
-Histórico de mensagens por chat
-
-👨‍💻 Próximos Passos
-Exibir usuários online em tempo real
-
-Controle de acesso a chats privados (permitir apenas usuários convidados)
-
-Melhorias na experiência de envio de mensagens (suporte a emojis, figurinhas, etc)
-
-Implementar chats privados 1:1 (entre dois usuários)
-
-Criar um sistema de amigos com envio e aceite de convites 
-
-💡 Aprendizados até aqui:
-Esse projeto está sendo uma ótima oportunidade de colocar em prática:
-
-Autenticação JWT
-
-Comunicação em tempo real com WebSockets
-
-Arquitetura cliente-servidor
-
-Controle de acesso
-
-Integração de Front-end com Back-end
